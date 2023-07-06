@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author ceavalos
+ */
+import java.util.Scanner;
+
+public class ConversorMoneda {
+    public static void main(String[] args) {
+        // Obtener el monto y las monedas de origen y destino desde el teclado
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el monto a convertir: ");
+        double monto = scanner.nextDouble();
+
+        System.out.print("Ingrese la moneda de origen (USD): ");
+        String monedaOrigen = scanner.next();
+
+        System.out.print("Ingrese la moneda de destino (GTQ): ");
+        String monedaDestino = scanner.next();
+
+        // Definir la tasa de cambio de dólares a quetzales
+        String respuesta ="";
+        double MontoOrigenUs;
+        double MontoDestino;
+        
+        //origin to us$
+        switch (monedaOrigen){
+        case "ColonesSv":
+            MontoOrigenUs = monto/8.73;
+        case "Quetzales":
+            MontoOrigenUs = monto/7.30;
+        case "PesosMx":
+            MontoOrigenUs = monto/200;
+        case "ColnesCr":
+            MontoOrigenUs = monto/575;
+        case "Euro":
+            MontoOrigenUs = monto/0.92;
+        case "US Dollar":
+            MontoOrigenUs = monto/1;
+        default:
+           MontoOrigenUs = 0;        
+         }
+        
+        //Us$ to destination
+        switch (monedaDestino){
+        case "ColonesSv":
+            MontoDestino = MontoOrigenUs*8.73;
+        case "Quetzales":
+            MontoDestino = MontoOrigenUs*7.30;
+        case "PesosMx":
+            MontoDestino = MontoOrigenUs*200;
+        case "ColnesCr":
+            MontoDestino = MontoOrigenUs*575;
+        case "Euro":
+            MontoDestino = MontoOrigenUs*0.92;
+        case "US Dollar":
+            MontoDestino = MontoOrigenUs*1;
+        default:
+           MontoDestino = 0;        
+    }
+        if (MontoDestino == 0 && MontoOrigenUs==0 ){
+            System.out.println("It Doesn´t exist data for that conversion" );
+        } else{
+            // Mostrar el resultado de la conversión
+            System.out.println(monto + " "+ monedaOrigen + " equals to " +MontoDestino + " "+ monedaDestino );
+        }      
+        
+    }
+}
+
